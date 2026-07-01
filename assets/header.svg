@@ -6,9 +6,10 @@
       <stop offset="100%" stop-color="#0b1120"/>
     </linearGradient>
 
-    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#64ffda" stop-opacity="0.55"/>
-      <stop offset="100%" stop-color="#64ffda" stop-opacity="0"/>
+    <radialGradient id="burst" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#3da9fc" stop-opacity="0.5"/>
+      <stop offset="60%" stop-color="#3da9fc" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#3da9fc" stop-opacity="0"/>
     </radialGradient>
 
     <pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse">
@@ -16,7 +17,7 @@
     </pattern>
 
     <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feGaussianBlur stdDeviation="3.5" result="blur"/>
       <feMerge>
         <feMergeNode in="blur"/>
         <feMergeNode in="SourceGraphic"/>
@@ -28,81 +29,39 @@
   <rect width="1200" height="280" rx="18" fill="url(#bg)"/>
   <rect width="1200" height="280" rx="18" fill="url(#grid)" opacity="0.5"/>
 
-  <!-- floating particles -->
-  <g fill="#64ffda">
-    <circle cx="120" cy="60" r="2.5" opacity="0.7">
-      <animate attributeName="cy" values="60;40;60" dur="3.5s" repeatCount="indefinite"/>
-      <animate attributeName="opacity" values="0.7;0.15;0.7" dur="3.5s" repeatCount="indefinite"/>
+  <!-- energy burst behind character -->
+  <g transform="translate(190,150)">
+    <circle r="130" fill="url(#burst)">
+      <animate attributeName="r" values="120;135;120" dur="2.2s" repeatCount="indefinite"/>
     </circle>
-    <circle cx="980" cy="80" r="2" opacity="0.6">
-      <animate attributeName="cy" values="80;55;80" dur="4.2s" repeatCount="indefinite"/>
-      <animate attributeName="opacity" values="0.6;0.1;0.6" dur="4.2s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="1050" cy="190" r="3" opacity="0.5">
-      <animate attributeName="cy" values="190;165;190" dur="3.8s" repeatCount="indefinite"/>
-      <animate attributeName="opacity" values="0.5;0.1;0.5" dur="3.8s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="90" cy="210" r="2" opacity="0.5">
-      <animate attributeName="cy" values="210;185;210" dur="3s" repeatCount="indefinite"/>
-      <animate attributeName="opacity" values="0.5;0.1;0.5" dur="3s" repeatCount="indefinite"/>
-    </circle>
+    <!-- radiating impact lines -->
+    <g stroke="#3da9fc" stroke-width="2.5" opacity="0.55">
+      <line x1="0" y1="0" x2="0" y2="-150"><animate attributeName="opacity" values="0.55;0.15;0.55" dur="1.8s" repeatCount="indefinite"/></line>
+      <line x1="0" y1="0" x2="106" y2="-106"><animate attributeName="opacity" values="0.4;0.6;0.4" dur="2s" repeatCount="indefinite"/></line>
+      <line x1="0" y1="0" x2="150" y2="0"><animate attributeName="opacity" values="0.55;0.15;0.55" dur="1.6s" repeatCount="indefinite"/></line>
+      <line x1="0" y1="0" x2="106" y2="106"><animate attributeName="opacity" values="0.4;0.6;0.4" dur="2.3s" repeatCount="indefinite"/></line>
+      <line x1="0" y1="0" x2="-106" y2="106"><animate attributeName="opacity" values="0.55;0.15;0.55" dur="1.9s" repeatCount="indefinite"/></line>
+      <line x1="0" y1="0" x2="-150" y2="0"><animate attributeName="opacity" values="0.4;0.6;0.4" dur="2.1s" repeatCount="indefinite"/></line>
+      <line x1="0" y1="0" x2="-106" y2="-106"><animate attributeName="opacity" values="0.55;0.15;0.55" dur="1.7s" repeatCount="indefinite"/></line>
+    </g>
   </g>
 
-  <!-- glow behind bot -->
-  <ellipse cx="190" cy="170" rx="140" ry="100" fill="url(#glow)"/>
-
-  <!-- ground shadow, squishes as bot jumps -->
-  <ellipse cx="190" cy="230" rx="55" ry="10" fill="#000" opacity="0.35">
-    <animate attributeName="rx" values="55;30;55" dur="1.4s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1" keyTimes="0;0.5;1"/>
-    <animate attributeName="opacity" values="0.35;0.15;0.35" dur="1.4s" repeatCount="indefinite"/>
-  </ellipse>
-
-  <!-- mecha bot, jumps as a group -->
-  <g transform="translate(190,175)">
-    <animateTransform attributeName="transform" type="translate"
-      values="190,175; 190,125; 190,175"
-      keyTimes="0;0.5;1"
-      calcMode="spline" keySplines="0.34 1.56 0.64 1;0.34 0 0.64 1"
-      dur="1.4s" repeatCount="indefinite"/>
-
-    <!-- antenna -->
-    <line x1="0" y1="-78" x2="0" y2="-60" stroke="#64ffda" stroke-width="3"/>
-    <circle cx="0" cy="-82" r="5" fill="#64ffda" filter="url(#softGlow)"/>
-
-    <!-- head -->
-    <rect x="-32" y="-58" width="64" height="46" rx="14" fill="#2a3652" stroke="#64ffda" stroke-width="2"/>
-    <!-- visor -->
-    <rect x="-24" y="-46" width="48" height="18" rx="8" fill="#0b1120"/>
-    <circle cx="-10" cy="-37" r="5" fill="#64ffda" filter="url(#softGlow)"/>
-    <circle cx="12" cy="-37" r="5" fill="#64ffda" filter="url(#softGlow)"/>
-
-    <!-- body -->
-    <rect x="-38" y="-14" width="76" height="58" rx="16" fill="#1e293b" stroke="#64ffda" stroke-width="2"/>
-    <circle cx="0" cy="12" r="10" fill="#151d34" stroke="#64ffda" stroke-width="2"/>
-
-    <!-- arms -->
-    <rect x="-58" y="-8" width="16" height="34" rx="8" fill="#2a3652" stroke="#64ffda" stroke-width="1.5"/>
-    <rect x="42" y="-8" width="16" height="34" rx="8" fill="#2a3652" stroke="#64ffda" stroke-width="1.5"/>
-
-    <!-- legs, tuck up slightly mid-air via sibling animation -->
-    <g>
-      <rect x="-28" y="44" width="20" height="30" rx="8" fill="#2a3652" stroke="#64ffda" stroke-width="1.5">
-        <animate attributeName="height" values="30;18;30" dur="1.4s" repeatCount="indefinite" keyTimes="0;0.5;1"/>
-      </rect>
-      <rect x="8" y="44" width="20" height="30" rx="8" fill="#2a3652" stroke="#64ffda" stroke-width="1.5">
-        <animate attributeName="height" values="30;18;30" dur="1.4s" repeatCount="indefinite" keyTimes="0;0.5;1"/>
-      </rect>
-    </g>
+  <!-- ninja head, subtle idle breathing -->
+  <g transform="translate(74.8,24.8) scale(0.45)">
+    <animateTransform attributeName="transform" type="scale"
+      additive="sum" values="1;1.03;1" dur="2.6s" repeatCount="indefinite"
+      calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1" keyTimes="0;0.5;1"/>
+    <path fill="#0b1120" stroke="#3da9fc" stroke-width="6" filter="url(#softGlow)" d="M280.054 19.867c-64.315 0-121.76 28.793-159.643 73.934 27.387.07 87.928 3.05 96.12 25.726-38.414-12.105-79.753-11.26-108.534-9.302a201.013 201.013 0 0 0-13.656 23.314c31.507-8.307 147.998-3.37 154.8 21.268-75.985-18.624-140.59-8.65-162.058-4.895-8.768 22.446-13.584 46.805-13.584 72.272 0 111.736 96.248 269.949 210.324 269.949 57.808 0 109.1-40.63 145.637-95.248-31.403 23.812-98.04 57.308-139.002 34.648 81.592-8.994 139.965-50.978 156.19-63.353 25.207-47.142 39.959-100.432 39.959-145.996 0-111.737-92.477-202.317-206.553-202.317zm-.002 151.692c105.084 0 190.273 27.727 190.273 61.931 0 22.047-4.495 33.48-57.797 44.453-29.39 6.052-95.127-31.181-132.476-31.181-34.864 0-87.12 41.345-115.219 36.017-56.597-10.732-75.053-26.433-75.053-49.289 0-34.204 85.188-61.931 190.272-61.931zm83.885 39.894c-20.14-.12-41.571 3.295-41.475 9.91.182 12.453 17.364 22.298 38.377 21.99 21.013-.306 18.555-16.216 37.717-23.101-.085-5.837-16.85-8.693-34.62-8.799zm-172.682 2.883c-17.77.105-34.534 2.964-34.62 8.8 19.162 6.885 16.704 22.796 37.718 23.102 21.013.307 38.195-9.54 38.377-21.992.096-6.615-21.336-10.03-41.475-9.91zm92.57 82.441c31.032 0 56.188 25.235 56.188 25.235s-28.184-11.104-59.217-11.104c-31.032 0-53.16 11.104-53.16 11.104s25.156-25.235 56.19-25.235zM31.25 411.39c4.344 2.046 7.783-40.336 52.246-61.265-8.111-8.465-12.438-24.638-14.24-35.502-32.733 4.158-55.012 84.887-38.006 96.767zm56.31-41.694c-7.511-.052-17.26-.228-17.445 16.937-.498 46.31-42.805 96.953-40.128 98.215 7.138 3.364 49.598-32.077 61.906-59.44 4.159-9.244 11.516-55.603-4.333-55.712z"/>
   </g>
 
   <!-- name + tagline -->
   <text x="420" y="130" font-family="Verdana, Arial, sans-serif" font-size="46" font-weight="bold" fill="#e2e8f0">
     Zaid Haris Saigal
   </text>
-  <text x="420" y="168" font-family="Verdana, Arial, sans-serif" font-size="20" fill="#64ffda">
+  <text x="420" y="168" font-family="Verdana, Arial, sans-serif" font-size="20" fill="#3da9fc">
     Full-Stack Developer
   </text>
   <text x="420" y="196" font-family="Verdana, Arial, sans-serif" font-size="15" fill="#8b98b0">
-    Building clean, functional web apps — one jump at a time
+    Code hits different when you build it with intent
   </text>
 </svg>
