@@ -8,7 +8,7 @@
 
 ![Profile Views](https://komarev.com/ghpvc/?username=zaidharissheikh&label=Profile%20Views&color=1e293b&style=flat-square)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-1e293b?style=flat-square&logo=linkedin&logoColor=64ffda)](https://www.linkedin.com/in/zaid-haris-saigal-680967248/)
-[![Portfolio](https://img.shields.io/badge/Portfolio-1e293b?style=flat-square&logo=vercel&logoColor=64ffda)](https://portfolio-pearl-nu-10.vercel.app)
+[![Portfolio](https://img.shields.io/badge/Portfolio-1e293b?style=flat-square&logo=vercel&logoColor=64ffda)](https://zaidharis-seven.vercel.app)
 [![Email](https://img.shields.io/badge/Email-1e293b?style=flat-square&logo=gmail&logoColor=64ffda)](mailto:zaidsaigal2005@gmail.com)
 
 </div>
